@@ -1,0 +1,123 @@
+services:
+  # ==========================================
+  # Core Backend: Go + GoFiber + GORM + SQLite
+  # ==========================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: golang-todo-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - APP_ENV=production
+      - DATABASE_PATH=/app/data/todo.db
+      - JWT_SECRET=super-secure-production-ready-jwt-key-32chars
+      - OTEL_EXPORTER_OTLP_ENDPOINT=otel-collector:4317
+      - CORS_ORIGIN=http://localhost:3002,http://127.0.0.1:3002,http://localhost:3000,http://127.0.0.1:3000
+    volumes:
+      - backend-data:/app/data
+    depends_on:
+      - otel-collector
+    networks:
+      - todo-network
+
+  # ==========================================
+  # Frontend: Next.js + TypeScript + MUI
+  # ==========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: golang-todo-frontend
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:8080/api/v1
+      - INTERNAL_API_URL=http://backend:8080
+    depends_on:
+      - backend
+    networks:
+      - todo-network
+
+  # ==========================================
+  # OpenTelemetry Collector
+  # ==========================================
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.113.0
+    container_name: golang-todo-otel-collector
+    restart: unless-stopped
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./observability/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - "4325:4317" # OTLP gRPC receiver
+      - "4326:4318" # OTLP HTTP receiver
+      - "8890:8889" # Prometheus metrics exporter
+    networks:
+      - todo-network
+
+  # ==========================================
+  # Tempo: Distributed Tracing Backend
+  # ==========================================
+  tempo:
+    image: grafana/tempo:2.5.0
+    container_name: golang-todo-tempo
+    restart: unless-stopped
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./observability/tempo.yaml:/etc/tempo.yaml
+    ports:
+      - "3205:3200" # Tempo HTTP
+    networks:
+      - todo-network
+
+  # ==========================================
+  # Prometheus: Time-Series Metrics
+  # ==========================================
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: golang-todo-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9092:9090"
+    networks:
+      - todo-network
+
+  # ==========================================
+  # Grafana: Observability Dashboards
+  # ==========================================
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: golang-todo-grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning
+      - ./observability/grafana/dashboards:/etc/grafana/dashboards
+    ports:
+      - "3005:3000" # Grafana UI on host port 3005
+    depends_on:
+      - prometheus
+      - tempo
+    networks:
+      - todo-network
+
+volumes:
+  backend-data:
+
+networks:
+  todo-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.150.0.0/16

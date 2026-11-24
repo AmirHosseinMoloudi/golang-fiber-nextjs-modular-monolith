@@ -1,0 +1,76 @@
+PROPRIETARY AND CONFIDENTIAL SOURCE CODE LICENSE
+ALL RIGHTS RESERVED
+
+Copyright (c) 2026. All Rights Reserved.
+
+NOTICE TO USER: PLEASE READ THIS DOCUMENT CAREFULLY. THIS SOFTWARE SOURCE CODE,
+ACCOMPANYING SPECIFICATIONS, DOCUMENTATION, ARCHITECTURAL DESIGNS, AND BINARIES
+(COLLECTIVELY, THE "SOFTWARE") CONSTITUTE VALUABLE PROPRIETARY TRADE SECRETS AND
+INTELLECTUAL PROPERTY.
+
+================================================================================
+1. STRICT RESERVATION OF RIGHTS AND OWNERSHIP
+================================================================================
+This Software is licensed, NOT sold. The author and copyright holder ("Licensor")
+retains all right, title, interest, and intellectual property rights in and to
+the Software, including but not limited to all copyrights, patents, patent
+disclosures, trademarks, service marks, trade secrets, trade dress, and other
+proprietary rights therein.
+
+No title, ownership, or transfer of intellectual property rights of any nature
+is granted or conveyed to you or any third party by virtue of accessing, viewing,
+downloading, possessing, or compiling this Software.
+
+================================================================================
+2. PROHIBITION OF USE, COPYING, DISTRIBUTION, AND COMMERCIALIZATION
+================================================================================
+Except as explicitly authorized in a separate, validly executed written commercial
+licensing agreement signed by an authorized representative of the Licensor:
+
+a. NO COPYING: You may NOT reproduce, copy, duplicate, or mirror the Software,
+   in whole or in part, in any format or medium.
+b. NO MODIFICATION: You may NOT alter, adapt, modify, translate, enhance, or
+   create derivative works based upon the Software or any portion thereof.
+c. NO DISTRIBUTION: You may NOT publish, distribute, broadcast, transmit, sell,
+   resell, rent, lease, sublicense, loan, disclose, or make the Software available
+   to any third party, whether via public repository, intranet, internet, peer-to-peer,
+   or physical media.
+d. NO SAAS OR CLOUD HOSTING: You may NOT run, execute, host, operate, or provide
+   the Software as a service, including Software-as-a-Service (SaaS), Platform-as-a-Service
+   (PaaS), Infrastructure-as-a-Service (IaaS), Application Service Provider (ASP),
+   or timesharing arrangement for the benefit of any third party or commercial entity.
+e. NO REVERSE ENGINEERING: You may NOT reverse engineer, decompile, disassemble,
+   decrypt, or attempt to derive source code, algorithms, data structures, or trade
+   secrets from any compiled, obfuscated, or binary format of the Software.
+f. NO BENCHMARKING: You may NOT use the Software or any output, benchmark, or performance
+   analysis derived from the Software for the purpose of creating, improving, training,
+   or marketing any competing product, framework, or machine learning model.
+
+================================================================================
+3. TRADE SECRETS AND CONFIDENTIALITY
+================================================================================
+The structure, organization, code, domain architecture, and algorithms of this
+Software contain valuable trade secrets of the Licensor. You agree to hold all
+elements of the Software in strict confidence and prevent any unauthorized
+disclosure, leakage, reproduction, or dissemination.
+
+================================================================================
+4. AUDIT RIGHTS AND INJUNCTIVE RELIEF
+================================================================================
+The Licensor reserves the right to audit systems and environments where this
+Software is stored or executed. In the event of an actual or threatened breach
+of this License, monetary damages alone shall be inadequate, and the Licensor
+shall be entitled to immediate injunctive and equitable relief without the necessity
+of posting bond or proving actual economic injury, in addition to all other legal
+remedies, damages, and attorney's fees.
+
+================================================================================
+5. NO WARRANTY & LIMITATION OF LIABILITY
+================================================================================
+THIS SOFTWARE IS PROVIDED "AS IS" AND "WITH ALL FAULTS," WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. IN NO EVENT SHALL
+THE LICENSOR OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, LOSS OF PROFITS,
+DATA LOSS, OR OTHER DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES ARISING OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR INABILITY
+TO USE THE SOFTWARE.
